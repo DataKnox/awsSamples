@@ -1,0 +1,32 @@
+{
+    "version": "2012-10-17",
+    "statement": [
+        {
+            "Action": [
+                "cloudformation:CreateChangeSet",
+                "cloudformation:CreateStacks",
+                "cloudformation:DescribeChangeSet",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:DescribeStacks",
+                "cloudformation:ExecuteChangeSet",
+                "cloudformation:ListStacksResources",
+                "cloudformation:updateStack",
+                "iam:AttachRolePolicy",
+                "iam:DetachRolePolicy",
+                "iam:GetRole",
+                "iam:GetUser",
+                "iam:PassRole"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "iam:CreateRole",
+                "iam:DeleteRole"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iam::*:role/cloud9-*"
+        }
+    ]
+}
