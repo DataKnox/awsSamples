@@ -15,7 +15,9 @@
                 "iam:DetachRolePolicy",
                 "iam:GetRole",
                 "iam:GetUser",
-                "iam:PassRole"
+                "iam:PassRole",
+                "iam:CreateRole",
+                "cloudformation:GetTemplateSummary"
             ],
             "Effect": "Allow",
             "Resource": "*"

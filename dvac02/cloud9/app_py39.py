@@ -1,21 +1,20 @@
 import json
 
 
-def hello_world(event, context):
-    event_body = json.loads(event['body'])
-    if event_body['type'] == 'planet':
-        if event_body['detail'] == 'tatooine':
+def lambda_handler(event, context):
+    if event['type'] == 'planet':
+        if event['detail'] == 'tatooine':
             body = "Hello Tatooine!"
-        elif event_body['detail'] == 'alderaan':
+        elif event['detail'] == 'alderaan':
             body = "Hello Alderaan!"
-        elif event_body['detail'] == 'hoth':
+        elif event['detail'] == 'hoth':
             body = "Hello Hoth!"
         else:
             body = "Hello Unknown Planet!"
-    elif event_body['type'] == 'starship':
-        if event_body['detail'] == 'falcon':
+    elif event['type'] == 'starship':
+        if event['detail'] == 'falcon':
             body = "Hello Millennium Falcon!"
-        elif event_body['detail'] == 'enterprise':
+        elif event['detail'] == 'enterprise':
             body = "Hello USS Enterprise!"
         else:
             body = "Hello Unknown Starship!"
