@@ -1,15 +1,15 @@
 {
-    "version": "2012-10-17",
-    "statement": [
+    "Version": "2012-10-17",
+    "Statement": [
         {
             "Action": [
                 "cloudformation:CreateChangeSet",
-                "cloudformation:CreateStacks",
+                "cloudformation:CreateStack",
                 "cloudformation:DescribeChangeSet",
                 "cloudformation:DescribeStackEvents",
                 "cloudformation:DescribeStacks",
                 "cloudformation:ExecuteChangeSet",
-                "cloudformation:ListStacksResources",
+                "cloudformation:ListStackResources",
                 "cloudformation:updateStack",
                 "iam:AttachRolePolicy",
                 "iam:DetachRolePolicy",
