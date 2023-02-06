@@ -2,7 +2,8 @@ import json
 import urllib.parse
 import boto3
 import logging
-logger = logging.getlogger().setLevel(logging.INFO)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
 s3 = boto3.client('s3')
@@ -16,7 +17,7 @@ def lambda_handler(event, context):
         event['Records'][0]['s3']['object']['key'], encoding='utf-8')
     try:
         response = s3.get_object(Bucket=bucket, Key=key)
-        logger.info(f"full s3 response: {json.dumps(response, indent=2)}")
+        logger.info(f"full s3 response: {response}")
         return response['ContentType']
     except Exception as err:
         logger.info(err)
