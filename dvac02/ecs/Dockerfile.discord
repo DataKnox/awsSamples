@@ -1,8 +1,8 @@
 FROM python:3.8-slim-buster
 RUN apt update && apt install libpq-dev gcc -y
 RUN python3 -m ensurepip --upgrade
-COPY requirements_discord.txt .
-RUN pip install -r requirements_discord.txt
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 COPY .env .env
-COPY ./bot.py bot.py
+COPY bot.py bot.py
 CMD ["python3","bot.py"]
