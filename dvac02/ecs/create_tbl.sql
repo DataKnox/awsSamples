@@ -1,6 +1,3 @@
-
-
--- films
 CREATE TABLE Films(
 	FilmID			INT				NOT NULL	PRIMARY KEY,
 	Title			VARCHAR(50)	NOT NULL,
