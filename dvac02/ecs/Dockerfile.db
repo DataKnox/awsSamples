@@ -1,0 +1,3 @@
+FROM postgres
+ENV POSTGRES_PASSWORD=mysecretpassword
+COPY create_tbl.sql /docker-entrypoint-initdb.d/
