@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  db:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: postgres
+      EFS_SOURCE_FOLDER: /data/sourcefolder/
+      EFS_DESTINATION_FOLDER: /data/destinationfolder/
+    image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/firstrepo:latest
+    volumes:
+      - efs-share:/var/lib/postgresql/data/
+    ports:
+      - '0.0.0.0:5432:5432'
+    networks:
+      main:
+        aliases:
+          - db
+  discord:
+    image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/secondrepo:latest
+    restart: always
+    depends_on:
+      - db
+    networks:
+      main:
+        aliases:
+          - discord
+networks:
+  main:
+volumes:
+  efs-share:
