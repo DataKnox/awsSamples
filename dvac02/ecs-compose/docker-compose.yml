@@ -5,8 +5,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mysecretpassword
       POSTGRES_DB: postgres
-      EFS_SOURCE_FOLDER: /data/sourcefolder/
-      EFS_DESTINATION_FOLDER: /data/destinationfolder/
     image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/firstrepo:latest
     volumes:
       - efs-share:/var/lib/postgresql/data/
