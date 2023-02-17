@@ -15,8 +15,7 @@ db_host = os.getenv('DBHOST')
 db_port = '5432'
 
 # Connecto to the database
-db_string = 'postgresql://{}:{}@{}:{}/{}'.format(
-    db_user, db_pass, db_host, db_port, db_name)
+db_string = f'postgresql://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}'
 db = create_engine(db_string, isolation_level="AUTOCOMMIT")
 intents = discord.Intents.default()
 intents.message_content = True
