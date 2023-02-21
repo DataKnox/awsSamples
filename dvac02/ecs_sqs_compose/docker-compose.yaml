@@ -1,23 +1,23 @@
 services:
   producer:
-    environment: 
-        - SQS_QUEUE_URL=https://sqs.us-east-2.amazonaws.com/531517645343/sqscompose
-    image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/producertest:latest
+    environment:
+      - SQS_QUEUE_URL=https://sqs.us-east-2.amazonaws.com/531517645343/sqscompose
+    image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/producer:latest
     x-aws-role:
-        Version: '2012-10-17'
-        Statement:
+      Version: '2012-10-17'
+      Statement:
         - Effect: Allow
           Action: sqs:*
           Resource: arn:aws:sqs:us-east-2:531517645343:sqscompose
   consumer:
-    environment: 
-        - SQS_QUEUE_URL=https://sqs.us-east-2.amazonaws.com/531517645343/sqscompose
-    image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/consumertest:latest
+    environment:
+      - SQS_QUEUE_URL=https://sqs.us-east-2.amazonaws.com/531517645343/sqscompose
+    image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/consumer:latest
     depends_on:
       - producer
     x-aws-role:
-        Version: '2012-10-17'
-        Statement:
+      Version: '2012-10-17'
+      Statement:
         - Effect: Allow
           Action: sqs:*
           Resource: arn:aws:sqs:us-east-2:531517645343:sqscompose
