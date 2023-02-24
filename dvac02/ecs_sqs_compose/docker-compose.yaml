@@ -1,17 +1,17 @@
 services:
   producer:
     environment:
-      - SQS_QUEUE_URL=https://sqs.us-east-2.amazonaws.com/531517645343/sqscompose
+      - SQS_QUEUE_URL=https://sqs.us-east-2.amazonaws.com/531517645343/microqueue
     image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/producer:latest
     x-aws-role:
       Version: '2012-10-17'
       Statement:
         - Effect: Allow
           Action: sqs:*
-          Resource: arn:aws:sqs:us-east-2:531517645343:sqscompose
+          Resource: arn:aws:sqs:us-east-2:531517645343:microqueue
   consumer:
     environment:
-      - SQS_QUEUE_URL=https://sqs.us-east-2.amazonaws.com/531517645343/sqscompose
+      - SQS_QUEUE_URL=https://sqs.us-east-2.amazonaws.com/531517645343/microqueue
     image: 531517645343.dkr.ecr.us-east-2.amazonaws.com/consumer:latest
     depends_on:
       - producer
@@ -20,4 +20,4 @@ services:
       Statement:
         - Effect: Allow
           Action: sqs:*
-          Resource: arn:aws:sqs:us-east-2:531517645343:sqscompose
+          Resource: arn:aws:sqs:us-east-2:531517645343:microqueue

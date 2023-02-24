@@ -15,7 +15,7 @@ def receive_messages(queue_url: str):
         AttributeNames=[
             'SentTimestamp'
         ],
-        MaxNumberOfMessages=1,
+        MaxNumberOfMessages=3,
         MessageAttributeNames=[
             'All'
         ],
