@@ -10,30 +10,29 @@ queue_name_in = os.getenv('SQS_QUEUE_URL')
 
 
 def receive_messages(queue_url: str):
-    while True:
-        messages = sqs_client.receive_message(
+    messages = sqs_client.receive_message(
+        QueueUrl=queue_url,
+        AttributeNames=[
+            'SentTimestamp'
+        ],
+        MaxNumberOfMessages=1,
+        MessageAttributeNames=[
+            'All'
+        ],
+        VisibilityTimeout=0,
+        WaitTimeSeconds=0
+    )
+    for msg in messages['Messages']:
+        receipt_handle = msg['ReceiptHandle']
+        logger.info(f"message found: \n {msg['Body']}")
+        # Delete received message from queue
+        sqs_client.delete_message(
             QueueUrl=queue_url,
-            AttributeNames=[
-                'SentTimestamp'
-            ],
-            MaxNumberOfMessages=1,
-            MessageAttributeNames=[
-                'All'
-            ],
-            VisibilityTimeout=0,
-            WaitTimeSeconds=0
+            ReceiptHandle=receipt_handle
         )
-        # print(f"messages: {messages['Messages']}")
-        for msg in messages['Messages']:
-            receipt_handle = msg['ReceiptHandle']
-            print(f"message found: \n {msg['Body']}")
-            # Delete received message from queue
-            sqs_client.delete_message(
-                QueueUrl=queue_url,
-                ReceiptHandle=receipt_handle
-            )
-            print('Received and deleted message: %s' % msg)
-        time.sleep(30)
+        logger.info('Received and deleted message: %s' % msg)
 
 
-receive_messages(queue_name_in)
+while True:
+    receive_messages(queue_name_in)
+    time.sleep(30)
