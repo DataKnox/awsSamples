@@ -4,7 +4,7 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 sqs_client = boto3.client('sqs')
-queue_name_in = 'firstqueue'
+queue_name_in = 'microqueue'
 
 
 def receive_messages(queue_name: str):
@@ -22,7 +22,7 @@ def receive_messages(queue_name: str):
             VisibilityTimeout=0,
             WaitTimeSeconds=0
         )
-        # print(f"messages: {messages['Messages']}")
+        print(f"messages: {messages['Messages']}")
         for msg in messages['Messages']:
             receipt_handle = msg['ReceiptHandle']
             print(f"message found: \n {msg['Body']}")

@@ -22,6 +22,7 @@ def receive_messages(queue_url: str):
         VisibilityTimeout=0,
         WaitTimeSeconds=0
     )
+    print(messages)
     for msg in messages['Messages']:
         receipt_handle = msg['ReceiptHandle']
         logger.info(f"message found: \n {msg['Body']}")
