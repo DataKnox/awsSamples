@@ -1,0 +1,52 @@
+{
+    "customerId": {
+        "S": ""
+    },
+    "recordCreateDate": {
+        "S": ""
+    },
+    "numVal": {
+        "N": "0"
+    },
+    "booVal": {
+        "BOOL": false
+    },
+    "binaVal": {
+        "B": "YWFh"
+    },
+    "nullVal": {
+        "NULL": true
+    },
+    "striSet": {
+        "SS": [
+            "strVal",
+            "strVal2"
+        ]
+    },
+    "numSet": {
+        "NS": [
+            "0",
+            "1"
+        ]
+    },
+    "listExample": {
+        "L": [
+            {
+                "S": "stringVal"
+            },
+            {
+                "N": "1"
+            }
+        ]
+    },
+    "mapExample": {
+        "M": {
+            "mapKey": {
+                "S": "value"
+            },
+            "numKey": {
+                "N": "1"
+            }
+        }
+    }
+}
