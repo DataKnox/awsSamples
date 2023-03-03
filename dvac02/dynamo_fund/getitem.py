@@ -1,7 +1,7 @@
 import boto3
 
 
-def get_date():
+def get_data():
     # get a specific record by providing the primary key
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('CustomerRecords')
@@ -15,4 +15,4 @@ def get_date():
     return response['Item']
 
 
-get_date()
+get_data()

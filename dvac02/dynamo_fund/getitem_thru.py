@@ -2,7 +2,7 @@ import boto3
 import json
 
 
-def get_date():
+def get_data():
     # check consumed capacity when swapping consistent read for eventual
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('CustomerRecords')
@@ -18,4 +18,4 @@ def get_date():
     return response['Item']
 
 
-get_date()
+get_data()
