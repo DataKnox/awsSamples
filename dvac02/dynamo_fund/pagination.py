@@ -28,11 +28,11 @@ def map_scan_dec_pag():
             FilterExpression=fe,
             ExclusiveStartKey=response['LastEvaluatedKey']
         )
-        for i in response['Items']:
+        for r in response['Items']:
             # convert set favoriteColors to a list first - JSON does not support sets
-            i['favoriteColors'] = list(i['favoriteColors'])
+            r['favoriteColors'] = list(r['favoriteColors'])
             # print output using the cls parameter to specify the DecimalEncoder class
-            print(json.dumps(i, cls=DecimalEncoder, indent=2))
+            print(json.dumps(r, cls=DecimalEncoder, indent=2))
 
 
 map_scan_dec_pag()
