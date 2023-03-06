@@ -12,7 +12,7 @@ batch_keys = {
             {'customerId': 'p1', 'recordCreateDate': 's2'},
         ]
     },
-    customer_recs_tbl.name: {
+    'CustomerRecords':  {
         'Keys': [
             {'customerId': 'p1', 'recordCreateDate': 's1'},
             {'customerId': 'p1', 'recordCreateDate': 's2'},
