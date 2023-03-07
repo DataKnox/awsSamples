@@ -8,18 +8,18 @@ customer_recs_tbl = dynamodb.Table('CustomerRecords')
 batch_keys = {
     customers_tbl.name: {
         'Keys': [
-            {'customerId': 'p1', 'recordCreateDate': 's1'},
-            {'customerId': 'p1', 'recordCreateDate': 's2'},
+            {'customerId': {'S': 'p1'}, 'recordCreateDate': {'S': 's1'}},
+            {'customerId': {'S': 'p1'}, 'recordCreateDate': {'S': 's2'}},
         ]
     },
     'CustomerRecords':  {
         'Keys': [
-            {'customerId': 'p1', 'recordCreateDate': 's1'},
-            {'customerId': 'p1', 'recordCreateDate': 's2'},
+            {'customerId': {'S': 'p1'}, 'recordCreateDate': {'S': 's1'}},
+            {'customerId': {'S': 'p1'}, 'recordCreateDate': {'S': 's2'}},
         ]
     }}
 
 
 response = dynamodb.batch_get_item(RequestItems=batch_keys)
 for response_table, response_items in response.items():
-    print("Got %s items from %s.", len(response_items), response_table)
+    print(f"Retrieved {len(response_items)} items from {response_table}")
