@@ -14,7 +14,8 @@ def perform_batch_write():
                 Item={
                     'customerId': f'cust-{str(randint(0, 1000000))}',
                     'recordCreateDate': f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}',
-                    'name': name
+                    'name': name,
+                    'age': randint(0, 100)
                 }
             )
 
@@ -52,24 +53,3 @@ def perform_dedupe_batch_write():
                     'other': '444',
                 }
             )
-
-
-def perform_batch_write_with_condition():
-    dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('Customers')
-    with table.batch_writer() as batch:
-        for n in range(15):
-            name = names.get_full_name()
-            batch.put_item(
-                Item={
-                    'customerId': f'cust-{str(randint(0, 1000000))}',
-                    'recordCreateDate': f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}',
-                    'name': name
-                },
-                # https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html
-                # attribute_exists | attribute_not_exists | attribute_type | contains | begins_with | size
-                ConditionExpression='attribute_not_exists(customerId)'
-            )
-
-
-perform_batch_write()
