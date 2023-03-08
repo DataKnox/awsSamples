@@ -6,7 +6,7 @@ from random import randint
 
 def perform_batch_write():
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('DynamoTable')
+    table = dynamodb.Table('CustomerRecords')
     with table.batch_writer() as batch:
         for n in range(15):
             name = names.get_full_name()
