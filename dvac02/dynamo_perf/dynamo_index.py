@@ -17,9 +17,9 @@ def secondary_query():
             break
     local_resp = table.query(
         # Add the name of the index you want to use in your query.
-        IndexName="name-index",
+        IndexName="age-index",
         KeyConditionExpression=Key('customerId').eq(
-            'cust-382032') & Key('name').begins_with('L')
+            'cust-421225') & Key('age').eq('58')
     )
 
     print("The local index query returned the following items:")
@@ -30,7 +30,7 @@ def secondary_query():
         # Add the name of the index you want to use in your query.
         IndexName="name-age-index",
         KeyConditionExpression=Key('name').eq(
-            'Laura Sampson') & Key('age').eq(39)
+            'Martha Russo') & Key('age').eq('28')
     )
     print("The global index query returned the following items:")
     for item in global_resp['Items']:

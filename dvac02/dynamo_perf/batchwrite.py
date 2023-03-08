@@ -6,7 +6,7 @@ from random import randint
 
 def perform_batch_write():
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('Customers')
+    table = dynamodb.Table('DynamoTable')
     with table.batch_writer() as batch:
         for n in range(15):
             name = names.get_full_name()
@@ -15,7 +15,7 @@ def perform_batch_write():
                     'customerId': f'cust-{str(randint(0, 1000000))}',
                     'recordCreateDate': f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}',
                     'name': name,
-                    'age': randint(0, 100)
+                    'age': str(randint(0, 100))
                 }
             )
 
@@ -54,4 +54,4 @@ def perform_dedupe_batch_write():
         )
 
 
-perform_dedupe_batch_write()
+perform_batch_write()
