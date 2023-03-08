@@ -11,11 +11,12 @@ def query_records_for_custId():
         KeyConditionExpression='customerId = :customerId',
         ExpressionAttributeValues={
             ':customerId': {'S': 'cust-616660'}
-        }
+        },
+        ReturnConsumedCapacity='TOTAL'
     )
     print("Query Records for Name:")
     print("\tResult:")
-    print(response['Items'])
+    print(response)
     return response['Items']
 
 
@@ -32,7 +33,7 @@ def query_records_for_custId_sort():
     )
     print("Query Records for Name with sort key:")
     print("\tResult:")
-    print(response['Items'])
+    print(response)
     return response['Items']
 
 
@@ -63,15 +64,16 @@ def query_records_for_custId_sortOps_pe():
             ':customerId': {'S': 'cust-616660'},
             ':recordCreateDate': {'S': '2023-03-02 10:41:53'}
         },
-        ProjectionExpression='customerId, recordCreateDate'
+        ProjectionExpression='customerId, recordCreateDate',
+        ReturnConsumedCapacity='TOTAL'
     )
     print("Query Records for Name with sort key Ops PE:")
     print("\tResult:")
-    print(response['Items'])
+    print(response)
     return response['Items']
 
 
-query_records_for_custId()
-query_records_for_custId_sort()
-query_records_for_custId_sortOps()
+# query_records_for_custId()
+# query_records_for_custId_sort()
+# query_records_for_custId_sortOps()
 query_records_for_custId_sortOps_pe()

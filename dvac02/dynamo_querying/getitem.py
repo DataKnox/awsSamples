@@ -7,8 +7,8 @@ def get_data():
     table = dynamodb.Table('CustomerRecords')
     response = table.get_item(
         Key={
-            'customerId': 'cust-616660',
-            'recordCreateDate': '2023-03-02 10:41:53'
+            'customerId': 'cust-7615',
+            'recordCreateDate': '2023-03-02 10:45:56'
         }
     )
     print(response['Item'])

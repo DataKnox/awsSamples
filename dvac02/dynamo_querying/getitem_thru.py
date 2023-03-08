@@ -12,9 +12,9 @@ def get_data():
             'recordCreateDate': '2023-03-02 10:41:53'
         },
         ReturnConsumedCapacity='TOTAL',
-        ConsistentRead=True
+        ConsistentRead=False
     )
-    print(json.dumps(response, indent=2))
+    print(response)
     return response['Item']
 
 

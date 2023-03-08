@@ -24,32 +24,34 @@ def perform_dedupe_batch_write():
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Customers')
     with table.batch_writer(overwrite_by_pkeys=['customerId', 'recordCreateDate']) as batch:
-        for n in range(15):
-            name = names.get_full_name()
-            batch.put_item(
-                Item={
-                    'customerId': 'p1',
-                    'recordCreateDate': 's1',
-                    'other': '111',
-                }
-            )
-            batch.put_item(
-                Item={
-                    'customerId': 'p1',
-                    'recordCreateDate': 's1',
-                    'other': '222',
-                }
-            )
-            batch.put_item(
-                Key={
-                    'customerId': 'p1',
-                    'recordCreateDate': 's2'
-                }
-            )
-            batch.put_item(
-                Item={
-                    'customerId': 'p1',
-                    'recordCreateDate': 's2',
-                    'other': '444',
-                }
-            )
+        name = names.get_full_name()
+        batch.put_item(
+            Item={
+                'customerId': 'p1',
+                'recordCreateDate': 's1',
+                'other': '111',
+            }
+        )
+        batch.put_item(
+            Item={
+                'customerId': 'p1',
+                'recordCreateDate': 's1',
+                'other': '222',
+            }
+        )
+        batch.put_item(
+            Item={
+                'customerId': 'p1',
+                'recordCreateDate': 's2'
+            }
+        )
+        batch.put_item(
+            Item={
+                'customerId': 'p1',
+                'recordCreateDate': 's2',
+                'other': '444',
+            }
+        )
+
+
+perform_dedupe_batch_write()

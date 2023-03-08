@@ -11,7 +11,7 @@ def scan_records_for_name():
     response = table.scan(FilterExpression=fe)
     print("Scan Records for Name:")
     print("\tResult:")
-    print(response['Items'])
+    print(response)
     return response['Items']
 
 
@@ -68,7 +68,7 @@ def scan_records_for_atts_reserved_sort():
     return response['Items']
 
 
-scan_records_for_name()
-scan_records_for_atts()
-scan_records_for_atts_reserved()
+# scan_records_for_name()
+# scan_records_for_atts()
+# scan_records_for_atts_reserved()
 scan_records_for_atts_reserved_sort()

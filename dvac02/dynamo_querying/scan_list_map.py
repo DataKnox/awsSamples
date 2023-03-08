@@ -10,6 +10,7 @@ def list_scan():
     response = table.scan(
         FilterExpression=fe
     )
+    print("List results")
     print(response)
 
 
@@ -20,6 +21,7 @@ def map_scan():
     response = table.scan(
         FilterExpression=fe
     )
+    print("Map results")
     print(response)
 
 

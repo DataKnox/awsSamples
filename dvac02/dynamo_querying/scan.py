@@ -7,7 +7,7 @@ def scan_records():
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('CustomerRecords')
     response = table.scan()
-    print(response['Items'])
+    print(response)
     return response['Items']
 
 
