@@ -1,5 +1,4 @@
 import boto3
-from callbacks import ProgressPercentage
 # Create an S3 client
 s3 = boto3.client('s3')
 
@@ -49,10 +48,10 @@ def upload_if_not_exists(filename=None, bucket=None, object_name=None):
         print(f"File {object_name} already exists in {bucket}")
 
 
-# upload_files('upload.txt', 'knox-def-bucket', 'upload.txt')
-# # upload_files('upload.txt', 'knox-def-bucket', 'oops.txt')
-# upload_files_pub('upload.txt',
-#                  'knox-def-bucket', 'try.txt')
-# list_objects()
+upload_files('upload.txt', 'knox-def-bucket', 'upload.txt')
+upload_files('upload.txt', 'knox-def-bucket', 'oops.txt')
+upload_files_pub('upload.txt',
+                 'knox-def-bucket', 'pub.txt')
+list_objects()
 
-upload_if_not_exists('upload.txt', 'knox-def-bucket', 'try.txt')
+upload_if_not_exists('upload.txt', 'knox-def-bucket', 'upload_v2.txt')
