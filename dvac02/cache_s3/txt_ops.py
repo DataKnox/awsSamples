@@ -3,23 +3,20 @@ from random import randint
 import names
 from datetime import datetime
 import boto3
+from essential_generators import DocumentGenerator
 s3 = boto3.client('s3')
 
 
 def create_csv_for_s3():
-    row_len = randint(1, 10)
-    row_list = [["id", "name", "age"]]
-    id_counter = 0
-    for r in range(row_len):
-        id_counter += 1
-        row_list.append([id_counter, names.get_full_name(), randint(0, 100)])
+
+    gen = DocumentGenerator()
+    data = gen.sentence()
 
     # print(row_list)
 
-    filename = f'customers-{datetime.now().strftime("%Y-%m-%d-%H%M%S")}.csv'
+    filename = f'customers-{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.txt'
     with open(filename, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows(row_list)
+        file.write(data)
     upload_if_not_exists(filename, 'cahcetest', filename)
     print(f"Created {filename}")
 
