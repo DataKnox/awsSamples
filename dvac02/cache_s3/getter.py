@@ -22,4 +22,5 @@ def get_object(bucket, key):
         return None
 
 
-get_object('knox-def-bucket', 'oops.txt')
+if __name__ == "__main__":
+    get_object('knox-def-bucket', 'customers-2023-03-14-12-49-17.txt')
