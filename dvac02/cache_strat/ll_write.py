@@ -8,9 +8,9 @@ redis = Redis(host='cachetest.evntxa.ng.0001.use2.cache.amazonaws.com', port=637
               decode_responses=True, ssl=False, username='default', password='default')
 
 
-def get_datas():
+def get_datas(cust=None):
     try:
-        datas = redis.get('cust-941540')
+        datas = redis.get(cust)
         if datas is None:
             print("redis is empty")
             print("querying dynamodb")
@@ -20,7 +20,7 @@ def get_datas():
                 TableName='CustomerRecords',
                 KeyConditionExpression='customerId = :customerId',
                 ExpressionAttributeValues={
-                    ':customerId': {'S': 'cust-941540'}
+                    ':customerId': {'S': cust}
                 },
                 ReturnConsumedCapacity='TOTAL'
             )
@@ -31,7 +31,7 @@ def get_datas():
             dict_bytes = bytes(dict_str, 'utf-8')
 
             print("setting redis")
-            redis.set('cust-941540', dict_bytes)
+            redis.set(cust, dict_bytes)
         else:
             print("redis is not empty")
 
@@ -72,5 +72,5 @@ def set_datas():
     return {'statusCode': 200}
 
 
-get_datas()
-set_datas()
+get_datas('cust-685378')
+# set_datas()
