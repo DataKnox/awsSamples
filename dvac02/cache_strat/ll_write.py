@@ -63,14 +63,16 @@ def set_datas():
             TableName='CustomerRecords',
             Item=item_payload
         )
+        print(f"Customer ID is {cust_id}")
         dict_str = json.dumps(item_payload)
         dict_bytes = bytes(dict_str, 'utf-8')
         redis.set(cust_id, dict_bytes)
+        redis.expire(cust_id, 6000)
     except Exception as e:
         print(e)
         raise e
     return {'statusCode': 200}
 
 
-get_datas('cust-685378')
-# set_datas()
+# get_datas('cust-685378')
+set_datas()
