@@ -1,6 +1,6 @@
 import boto3
 from redis import Redis
-redis = Redis(host='cachetest.evntxa.ng.0001.use2.cache.amazonaws.com', port=6379,
+redis = Redis(host='cache-app.evntxa.ng.0001.use2.cache.amazonaws.com', port=6379,
               decode_responses=True, ssl=False, username='default', password='default')
 s3 = boto3.resource('s3')
 
