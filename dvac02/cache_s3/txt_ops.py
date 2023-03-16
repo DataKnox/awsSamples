@@ -11,7 +11,7 @@ def create_csv_for_s3():
     filename = f'customers-{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.txt'
     with open(filename, 'w', newline='') as file:
         file.write(data)
-    upload_if_not_exists(filename, 'cahcetest', filename)
+    upload_if_not_exists(filename, 'object-cache', filename)
     print(f"Created {filename}")
 
 
