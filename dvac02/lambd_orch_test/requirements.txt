@@ -1,0 +1,12 @@
+requests
+smart_open
+moto
+responses
+jq
+yq
+pytest
+# for test.py
+mock
+pytest
+pytest-cov
+pytest-xdist 

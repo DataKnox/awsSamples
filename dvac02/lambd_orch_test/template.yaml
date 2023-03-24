@@ -1,0 +1,97 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: A lambda to upload to S3
+Parameters:
+  Environment:
+    Type: String
+    AllowedValues:
+      - dev
+      - staging
+      - prod
+  LambdaName:
+    Type: String
+    Default: swapi-example
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Join:
+          - "-"
+          - - Ref: LambdaName
+            - Ref: Environment
+      Handler: main.lambda_handler
+      Runtime: python3.7
+      Environment:
+        Variables:
+          EXAMPLE_S3_BUCKET:
+            Ref: S3Bucket
+          EXAMPLE_DYNAMODB_TABLE:
+            Ref: DynamoDBTable
+      MemorySize: 256
+      Timeout: 600
+      Events:
+        Timer:
+          Type: Schedule
+          Properties:
+            Schedule: rate(3 hours)
+      Tracing: Active
+      Policies:
+        - Statement:
+            - Action:
+                - s3:PutObject
+              Effect: Allow
+              Resource:
+                Fn::Join:
+                  - /
+                  - - Fn::GetAtt:
+                        - S3Bucket
+                        - Arn
+                    - "*"
+        - Statement:
+            - Action:
+                - dynamodb:PutItem
+              Effect: Allow
+              Resource:
+                - !GetAtt DynamoDBTable.Arn
+  LambdaFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: LambdaFunction
+    Properties:
+      LogGroupName:
+        Fn::Join:
+          - ""
+          - - /aws/lambda/
+            - Ref: LambdaName
+            - "-"
+            - Ref: Environment
+      RetentionInDays: 14
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::Join:
+          - "-"
+          - - swapi-dev-buck
+            - Ref: Environment
+  DynamoDBTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: name
+          AttributeType: S
+      KeySchema:
+        - AttributeName: name
+          KeyType: HASH
+      TableName:
+        Fn::Join:
+          - "-"
+          - - swapi-dev
+            - Ref: Environment
+      BillingMode: PAY_PER_REQUEST
+Outputs:
+  LambdaArn:
+    Value:
+      Fn::GetAtt:
+        - LambdaFunction
+        - Arn

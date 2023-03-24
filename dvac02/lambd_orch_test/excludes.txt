@@ -1,0 +1,22 @@
+# SAM
+dist/
+build/
+build.sh
+medium-example-event.json
+2019-20.NBA.Roster.json
+template.yaml
+excludes.txt
+output
+dev.json
+staging.json
+prod.json
+
+# Git
+.git/
+
+# Python
+__pycache__/
+test.py
+.pytest_cache/
+.coverage
+requirements.txt
