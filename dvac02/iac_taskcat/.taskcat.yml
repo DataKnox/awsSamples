@@ -1,0 +1,7 @@
+project:
+  name: taskcat-test
+  regions:
+    - us-east-2
+tests:
+  s3-test:
+    template: ./s3.yml

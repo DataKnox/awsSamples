@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: cloud formation bucket creation
+
+Parameters:
+  BucketName: { Type: String, Default: "knox-buck" }
+
+Resources:
+  LogBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: LogDeliveryWrite
+
+  DataBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !Ref BucketName
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      LoggingConfiguration:
+        DestinationBucketName: !Ref LogBucket
+
+  CloudQueue:
+    Type: "AWS::SQS::Queue"
+    Properties:
+      QueueName: "cloudfnq"
+
+Outputs:
+  MainBucketName:
+    Description: Created data bucket
+    Value: !Ref DataBucket
+  LogBucketName:
+    Description: Created log bucket
+    Value: !Ref LogBucket
+  QueueARN:
+    Value: !Ref CloudQueue

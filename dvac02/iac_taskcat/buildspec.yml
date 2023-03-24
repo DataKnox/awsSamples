@@ -1,0 +1,22 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+  pre_build:
+    commands:
+      - echo Prep the environment
+      - echo beginning build
+      - curl -O https://bootstrap.pypa.io/get-pip.py
+      - python3 get-pip.py
+      - pip install --upgrade pip
+      - pip3 install taskcat
+  build:
+    commands:
+      - taskcat test run
+  post_build:
+    commands:
+      - echo Build completed. Publishing artificats
+artifacts:
+  files:
+    - "**/*"
