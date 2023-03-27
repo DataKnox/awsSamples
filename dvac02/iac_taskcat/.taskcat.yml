@@ -1,7 +1,7 @@
 project:
-  name: taskcat-test
+  name: taskcat-demo
   regions:
     - us-east-2
 tests:
   s3-test:
-    template: ./s3.yml
+    template: ./s3_queue.yml

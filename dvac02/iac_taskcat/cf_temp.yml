@@ -137,23 +137,6 @@ Resources:
       Source:
         Type: CODEPIPELINE
       TimeoutInMinutes: 60
-  CodeBuildDashboard:
-    Type: AWS::CodeBuild::Project
-    DependsOn: CodeBuildRole
-    Properties:
-      Description: Deploy site to S3
-      ServiceRole: !GetAtt CodeBuildRole.Arn
-      Artifacts:
-        Type: NO_ARTIFACTS
-      Environment:
-        Type: LINUX_CONTAINER
-        ComputeType: BUILD_GENERAL1_SMALL
-        Image: "aws/codebuild/amazonlinux2-x86_64-standard:4.0"
-      Source:
-        Type: GITHUB
-        Location: !Sub https://github.com/${GitHubUser}/${GitHubRepo}.git
-        BuildSpec: buildspec-dash.yml
-      TimeoutInMinutes: 10
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
@@ -195,19 +178,6 @@ Resources:
                 ProjectName:
                   Ref: CodeBuildTaskCatTest
               RunOrder: 10
-            - InputArtifacts:
-                - Name: TaskCatArtifacts
-              Name: TaskCatDashboard
-              ActionTypeId:
-                Category: Test
-                Owner: AWS
-                Version: "1"
-                Provider: CodeBuild
-              OutputArtifacts: []
-              Configuration:
-                ProjectName:
-                  Ref: CodeBuildDashboard
-              RunOrder: 20
       ArtifactStore:
         Type: S3
         Location: !Ref PipelineBucket

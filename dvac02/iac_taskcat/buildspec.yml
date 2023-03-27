@@ -16,7 +16,8 @@ phases:
       - taskcat test run
   post_build:
     commands:
-      - echo Build completed. Publishing artificats
+      - aws s3 cp --recursive --acl public-read ./taskcat_outputs s3://${SiteBucket}/
 artifacts:
+  type: zip
   files:
-    - "**/*"
+    - ./index.html

@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: cloud formation bucket creation
 
 Parameters:
-  BucketName: { Type: String, Default: "knox-buck" }
+  BucketName: { Type: String, Default: "knox-buck-iac" }
 
 Resources:
   LogBucket:
