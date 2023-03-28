@@ -3,7 +3,7 @@ import mock
 import os
 import pytest
 import responses
-
+import time
 from moto import mock_dynamodb
 
 
@@ -87,6 +87,7 @@ def test_dynamodb_put_item():
     #     ProvisionedThroughput={
     #         "ReadCapacityUnits": 5, "WriteCapacityUnits": 5},
     # )
+    # time.sleep(180)
 
     dynamodb_put_item(
         table_name, {'name': 'Luke Skywalker', 'height': '175', 'birth_year': '19BBY'})

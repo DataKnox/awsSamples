@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-Description: A lambda to upload to S3
+Description: A lambda to upload to S3 and write to DynamoDB
 Parameters:
   Environment:
     Type: String
@@ -34,7 +34,7 @@ Resources:
         Timer:
           Type: Schedule
           Properties:
-            Schedule: rate(3 hours)
+            Schedule: rate(4 hours)
       Tracing: Active
       Policies:
         - Statement:
@@ -72,7 +72,7 @@ Resources:
       BucketName:
         Fn::Join:
           - "-"
-          - - swapi-dev-buck
+          - - swapi-buck
             - Ref: Environment
   DynamoDBTable:
     Type: "AWS::DynamoDB::Table"

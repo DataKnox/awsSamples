@@ -17,7 +17,7 @@ STACK_NAME=$FUNCTION_NAME-$ENV
 # Make sure the buckets are created before running the script.
 case $ENV in
     dev)
-        LAMBDA_ARTIFACT_BUCKET=swapi-dev-buck
+        LAMBDA_ARTIFACT_BUCKET=lambda-artis
         ;;
     staging)
         LAMBDA_ARTIFACT_BUCKET=swapi-lambda-staging
