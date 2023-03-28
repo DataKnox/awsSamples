@@ -24,9 +24,9 @@ Resources:
       Runtime: python3.7
       Environment:
         Variables:
-          EXAMPLE_S3_BUCKET:
+          S3_BUCKET:
             Ref: S3Bucket
-          EXAMPLE_DYNAMODB_TABLE:
+          DYNAMODB_TABLE:
             Ref: DynamoDBTable
       MemorySize: 256
       Timeout: 600

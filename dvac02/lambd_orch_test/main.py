@@ -8,8 +8,8 @@ import requests
 
 from botocore.exceptions import ClientError, ParamValidationError
 
-example_bucket = os.environ['EXAMPLE_S3_BUCKET']
-example_table = os.environ['EXAMPLE_DYNAMODB_TABLE']
+demo_bucket = os.environ['S3_BUCKET']
+demo_table = os.environ['DYNAMODB_TABLE']
 
 dynamodb2 = boto3.resource('dynamodb')
 
@@ -23,7 +23,7 @@ def lambda_handler(event, context):
             if person['homeworld'] == 'https://swapi.dev/api/planets/1/']
 
     for person in cast:
-        dynamodb_put_item(example_table,
+        dynamodb_put_item(demo_table,
                           {'name': person['name'], 'height': person['height'], 'birth_year': person['birth_year']})
 
     upload_file(json.dumps(data).encode('utf-8'))
@@ -42,8 +42,8 @@ def download_file(url):
 
 
 def upload_file(obj):
-    with smart_open.open('s3://{}/{}'.format(example_bucket, 'cast.json'), 'wb') as fout:
-        fout.write(obj)
+    with smart_open.open('s3://{}/{}'.format(demo_bucket, 'cast.json'), 'wb') as file:
+        file.write(obj)
 
 
 def dynamodb_put_item(table, item):

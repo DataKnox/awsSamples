@@ -2,16 +2,14 @@ import json
 import mock
 import os
 import pytest
-
 import responses
-import requests
 
 from moto import mock_dynamodb
 
 
 # Override smart_open library as it doesn't have any mock implementation
-with mock.patch.dict(os.environ, {"EXAMPLE_S3_BUCKET": "test-bucket"}),\
-        mock.patch.dict(os.environ, {"EXAMPLE_DYNAMODB_TABLE": "test1"}),\
+with mock.patch.dict(os.environ, {"S3_BUCKET": "test-bucket"}),\
+        mock.patch.dict(os.environ, {"DYNAMODB_TABLE": "test1"}),\
         mock.patch.dict('sys.modules', smart_open=mock.MagicMock()):
     from main import *
 

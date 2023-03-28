@@ -4,7 +4,6 @@ moto
 responses
 jq
 yq
-pytest
 # for test.py
 mock
 pytest
