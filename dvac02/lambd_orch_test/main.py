@@ -11,7 +11,7 @@ from botocore.exceptions import ClientError, ParamValidationError
 demo_bucket = os.environ['S3_BUCKET']
 demo_table = os.environ['DYNAMODB_TABLE']
 
-dynamodb2 = boto3.resource('dynamodb')
+dynamodb = boto3.resource('dynamodb')
 
 
 def lambda_handler(event, context):
@@ -48,7 +48,7 @@ def upload_file(obj):
 
 def dynamodb_put_item(table, item):
     try:
-        table = dynamodb2.Table(table)
+        table = dynamodb.Table(table)
         table.put_item(Item=item)
     except (ClientError, ParamValidationError) as e:
         logging.error(e)
