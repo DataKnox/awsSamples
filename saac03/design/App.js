@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import mayc from './mayc5013.jpg';
 function App() {
     return (
         <div className="App">
