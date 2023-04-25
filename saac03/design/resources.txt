@@ -1,0 +1,3 @@
+https://aws.amazon.com/blogs/architecture/architecting-for-reliable-scalability/
+
+https://aws.amazon.com/blogs/architecture/scale-your-web-application-one-step-at-a-time/
