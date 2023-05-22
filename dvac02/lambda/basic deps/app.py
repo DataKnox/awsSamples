@@ -1,6 +1,5 @@
 import logging
 import json
-import boto3
 from aws_lambda_typing import context as context_, events
 
 logger = logging.getLogger()
