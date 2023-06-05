@@ -7,12 +7,13 @@ import time
 
 def create_csv_for_s3():
     row_len = randint(20, 100)
-    row_list = [["id", "name", "age", "salesamt", "salestime"]]
+    row_list = [["id", "name", "productid",
+                 "quantity", "salesamt", "salestime"]]
     id_counter = 0
     for r in range(row_len):
         id_counter += 1
         row_list.append([id_counter, names.get_full_name(),
-                        randint(0, 100), randint(0, 10000), time.time()])
+                        randint(0, 100), randint(0, 4), randint(0, 10000), time.time()])
 
     # print(row_list)
 
