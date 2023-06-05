@@ -7,7 +7,7 @@ s3 = boto3.client('s3')
 
 
 def create_csv_for_s3():
-    row_len = randint(1, 10)
+    row_len = randint(1, 100)
     row_list = [["id", "name", "age"]]
     id_counter = 0
     for r in range(row_len):
