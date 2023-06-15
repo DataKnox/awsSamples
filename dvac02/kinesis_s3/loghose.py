@@ -20,7 +20,7 @@ def create_timed_rotating_log(path):
 
 
 if __name__ == "__main__":
-    log_file = "loghose.log"
+    log_file = "/var/log/loghose.log"
     create_timed_rotating_log(log_file)
 
 
