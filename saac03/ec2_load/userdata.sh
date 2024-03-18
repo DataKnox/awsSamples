@@ -8,7 +8,7 @@ systemctl start httpd
 systemctl enable httpd
 usermod -a -G apache ec2-user
 echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
-touch /var/www/html/index.html
+echo "Sample Text" > /var/www/html/index.html
 wget -P /var/www/html https://raw.githubusercontent.com/DataKnox/awsSamples/main/saac03/ec2_load/instance.php
 chown -R ec2-user:apache /var/www
 chmod 2775 /var/www && find /var/www -type d -exec sudo chmod 2775 {} \;
